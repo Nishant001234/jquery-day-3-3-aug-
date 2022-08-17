@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Range Slider Control</title>
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet" type="text/css">
+      <script src = "https://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js" type="text/javascript"></script>
+      <script type="text/javascript">
+        $(document).ready(function(){
+            $("#AgeRangeSlider").slider({
+                orientation:"horizontal",
+                min:18,
+                max:100,
+                value:18,
+                slide:function(event,ui){
+                    $("#AgeValue").val(ui.value);
+                }
+            });
+            $("#AgeValue").val($("#AgeRangeSlider").slider("value"));
+
+            $("#PriceValue").slider({
+                range:true,
+                min:1,
+                max:500,
+                values:[1,50],
+                start:function(event,ui){
+                    $("#startvalue")
+                    .val("$"+ui.values[0]);
+                },
+                stop:function(event,ui){
+                    $("#endvalue")
+                    .val("$"+ui.values[1]);
+                },
+                change:function(event,ui){
+                    $("#changevalue")
+                    .val("$"+ui.values[0]+"-$"+ui.values[1]);
+                },
+                slide:function(event,ui){
+                    $("#slidevalue")
+                    .val("$"+ui.values[0]+"-$"+ui.values[1]);
+                }
+            });
+        });
+      </script>
+
+      <style type="text/css">
+        #AgeValue
+        {
+            width: 40px;
+            height: 30px;
+            font-size: large;
+            font-weight: bold;
+            color: aqua;
+        }
+        #AgeRangeSlider
+        {
+            width: 250px;
+        }
+        #PriceValue
+        {
+            width: 250px;
+        }
+        #startvalue,#endvalue,#changevalue,#slidevalue
+        {
+            width: 150px;
+            height: 30px;
+            font-size: large;
+            font-weight: bold;
+            color: pink;
+        }
+        #f1
+        {
+            text-align: center;
+            margin-top: 150px;
+            background-color:red;
+            width: 300px;
+            border-radius: 30px;
+        }
+        #AgeRangeSlider,#PriceValue
+        {
+            margin-left: 30px;
+        }
+      </style>
+</head>
+<body>
+    <form id="f1">
+        <blockquote>
+        <label for="AgeValue"> Enter Your Age:-</label>
+        <input type="text" id="AgeValue" disabled="true">
+        </blockquote>
+        <div id="AgeRangeSlider"></div>
+        <hr width="150px" color="green">
+        <div id="PriceValue"></div>
+        <blockquote>
+            <label for="startvalue">Start Value:-</label>
+            <input type="text" id="startvalue" disabled="true">
+        </blockquote>
+        <blockquote>
+            <label for="endvalue">End Value:-</label>
+            <input type="text" id="endvalue" disabled="true">
+        </blockquote>
+        <blockquote>
+            <label for="changevalue">Change Value:-</label>
+            <input type="text" id="changevalue" disabled="true">
+        </blockquote>
+        <blockquote>
+            <label for="slidevalue">Slide Value:-</label>
+            <input type="text" id="slidevalue" disabled="true">
+        </blockquote>
+    </form>
+</body>
+</html>
